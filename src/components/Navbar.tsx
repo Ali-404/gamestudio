@@ -32,24 +32,26 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                  isActive(item.href)
-                    ? 'text-primary bg-primary/10'
-                    : 'text-white hover:text-primary hover:bg-primary/5'
-                }`}
-              >
-                {item.name}
-              </Link>
+              item.name === 'Contact' ? (
+                <Link key={item.name} to={item.href}>
+                  <Button variant="outline" className="border-brandRed-600 text-brandRed-600 hover:bg-brandRed-600 hover:text-white transition-colors">
+                    {item.name}
+                  </Button>
+                </Link>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                    isActive(item.href)
+                      ? 'text-brandRed-600 bg-brandRed-600/10'
+                      : 'text-white hover:text-brandRed-600 hover:bg-brandRed-600/10'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
-            <Button 
-              variant="outline" 
-              className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300"
-            >
-              Connexion
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -69,27 +71,27 @@ const Navbar = () => {
         <div className="md:hidden bg-dark/98 backdrop-blur-sm">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-                  isActive(item.href)
-                    ? 'text-primary bg-primary/10'
-                    : 'text-white hover:text-primary hover:bg-primary/5'
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </Link>
+              item.name === 'Contact' ? (
+                <Link key={item.name} to={item.href} onClick={() => setIsOpen(false)}>
+                  <Button variant="outline" className="w-full border-brandRed-600 text-brandRed-600 hover:bg-brandRed-600 hover:text-white transition-colors">
+                    {item.name}
+                  </Button>
+                </Link>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                    isActive(item.href)
+                      ? 'text-brandRed-600 bg-brandRed-600/10'
+                      : 'text-white hover:text-brandRed-600 hover:bg-brandRed-600/10'
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
-            <div className="px-3 py-2">
-              <Button 
-                variant="outline" 
-                className="w-full border-primary text-primary hover:bg-primary hover:text-white"
-              >
-                Connexion
-              </Button>
-            </div>
           </div>
         </div>
       )}

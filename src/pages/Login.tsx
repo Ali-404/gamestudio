@@ -47,16 +47,16 @@ const Login = () => {
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5"></div>
       <div className="absolute top-20 left-20 w-72 h-72 bg-primary/20 rounded-full blur-3xl opacity-30"></div>
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-red-500/10 rounded-full blur-3xl opacity-20"></div>
+      <div className="absolute bottom-20 right-20 w-96 h-96 bg-brandRed-500/10 rounded-full blur-3xl opacity-20"></div>
       
       <Card className="w-full max-w-md bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl border-0 shadow-2xl relative z-10">
         <CardHeader className="text-center pb-8">
           <div className="flex justify-center mb-6">
             <div className="relative">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-red-600 rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary to-brandRed-600 rounded-2xl flex items-center justify-center shadow-lg">
                 <Gamepad2 className="h-8 w-8 text-white" />
               </div>
-              <div className="absolute -inset-2 bg-gradient-to-br from-primary/20 to-red-600/20 rounded-2xl blur-xl"></div>
+              <div className="absolute -inset-2 bg-gradient-to-br from-primary/20 to-brandRed-600/20 rounded-2xl blur-xl"></div>
             </div>
           </div>
           <CardTitle className="text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
@@ -114,7 +114,7 @@ const Login = () => {
             
             <Button 
               type="submit" 
-              className="w-full h-12 bg-gradient-to-r from-primary to-red-600 hover:from-primary/90 hover:to-red-600/90 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02]"
+              className="w-full h-12 bg-gradient-to-r from-primary to-brandRed-600 hover:from-primary/90 hover:to-brandRed-600/90 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02]"
               disabled={isLoading}
             >
               {isLoading ? (

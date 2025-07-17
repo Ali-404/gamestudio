@@ -69,8 +69,8 @@ export const DashboardStats = () => {
       value: '94%',
       description: 'Engagement',
       icon: Activity,
-      color: 'text-red-600',
-      bgColor: 'bg-red-100 dark:bg-red-900/20',
+      color: 'text-brandRed-600',
+      bgColor: 'bg-brandRed-100 dark:bg-brandRed-900/20',
       trend: '+5.1%',
       trendUp: true
     },
@@ -119,7 +119,7 @@ export const DashboardStats = () => {
                   {stat.value}
                 </div>
                 <div className={`flex items-center text-xs font-medium ${
-                  stat.trendUp ? 'text-green-600' : 'text-red-600'
+                  stat.trendUp ? 'text-green-600' : 'text-brandRed-600'
                 }`}>
                   <TrendingUp className={`h-3 w-3 mr-1 ${stat.trendUp ? '' : 'rotate-180'}`} />
                   {stat.trend}

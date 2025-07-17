@@ -109,7 +109,7 @@ export const NewsManagement = () => {
       case 'announcement': return 'bg-blue-100 text-blue-800 border-blue-200';
       case 'update': return 'bg-green-100 text-green-800 border-green-200';
       case 'event': return 'bg-purple-100 text-purple-800 border-purple-200';
-      case 'release': return 'bg-red-100 text-red-800 border-red-200';
+      case 'release': return 'bg-brandRed-100 text-brandRed-800 border-brandRed-200';
       default: return 'bg-gray-100 text-gray-800 border-gray-200';
     }
   };
@@ -136,7 +136,7 @@ export const NewsManagement = () => {
         </div>
         <Button 
           onClick={() => setIsAdding(true)}
-          className="bg-gradient-to-r from-primary to-red-600 hover:from-primary/90 hover:to-red-600/90 text-white shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+          className="bg-gradient-to-r from-primary to-brandRed-600 hover:from-primary/90 hover:to-brandRed-600/90 text-white shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
         >
           <Plus className="mr-2 h-4 w-4" />
           Nouvel article
@@ -201,7 +201,7 @@ export const NewsManagement = () => {
             <div className="flex gap-3">
               <Button 
                 onClick={handleAddNews} 
-                className="bg-gradient-to-r from-primary to-red-600 hover:from-primary/90 hover:to-red-600/90 text-white shadow-lg"
+                className="bg-gradient-to-r from-primary to-brandRed-600 hover:from-primary/90 hover:to-brandRed-600/90 text-white shadow-lg"
               >
                 <Plus className="mr-2 h-4 w-4" />
                 Publier l'article
@@ -293,7 +293,7 @@ export const NewsManagement = () => {
                     size="sm" 
                     variant="outline" 
                     onClick={() => handleDeleteNews(item.id)}
-                    className="border-red-300 dark:border-red-600 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-700"
+                    className="border-brandRed-300 dark:border-brandRed-600 text-brandRed-600 hover:bg-brandRed-100 dark:hover:bg-brandRed-900/20 hover:text-brandRed-700"
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>

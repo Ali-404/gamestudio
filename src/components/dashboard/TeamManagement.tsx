@@ -151,7 +151,7 @@ export const TeamManagement = ({ readonly = false }: TeamManagementProps) => {
         {!readonly && (
           <Button 
             onClick={() => setIsAdding(true)}
-            className="bg-gradient-to-r from-primary to-red-600 hover:from-primary/90 hover:to-red-600/90 text-white shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+            className="bg-gradient-to-r from-primary to-brandRed-600 hover:from-primary/90 hover:to-brandRed-600/90 text-white shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
           >
             <Plus className="mr-2 h-4 w-4" />
             Nouveau membre
@@ -241,7 +241,7 @@ export const TeamManagement = ({ readonly = false }: TeamManagementProps) => {
             <div className="flex gap-3">
               <Button 
                 onClick={handleAddMember} 
-                className="bg-gradient-to-r from-primary to-red-600 hover:from-primary/90 hover:to-red-600/90 text-white shadow-lg"
+                className="bg-gradient-to-r from-primary to-brandRed-600 hover:from-primary/90 hover:to-brandRed-600/90 text-white shadow-lg"
               >
                 <Plus className="mr-2 h-4 w-4" />
                 Ajouter le membre
@@ -270,10 +270,10 @@ export const TeamManagement = ({ readonly = false }: TeamManagementProps) => {
               <div className="flex items-start gap-4">
                 {/* Avatar */}
                 <div className="relative">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-red-600/20 flex items-center justify-center shadow-lg">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-brandRed-600/20 flex items-center justify-center shadow-lg">
                     <User className="h-8 w-8 text-primary" />
                   </div>
-                  <div className="absolute -inset-1 bg-gradient-to-br from-primary/30 to-red-600/30 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-br from-primary/30 to-brandRed-600/30 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
 
                 {/* Content */}
@@ -302,7 +302,7 @@ export const TeamManagement = ({ readonly = false }: TeamManagementProps) => {
                           size="sm" 
                           variant="outline" 
                           onClick={() => handleDeleteMember(member.id)}
-                          className="h-8 w-8 p-0 border-red-300 dark:border-red-600 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-700"
+                          className="h-8 w-8 p-0 border-brandRed-300 dark:border-brandRed-600 text-brandRed-600 hover:bg-brandRed-100 dark:hover:bg-brandRed-900/20 hover:text-brandRed-700"
                         >
                           <Trash2 className="h-3 w-3" />
                         </Button>

@@ -67,13 +67,13 @@ const GameCard = ({ game }: GameCardProps) => {
         
         <div className="flex flex-wrap gap-2">
           {game.technologies.map((tech) => (
-            <Badge key={tech} variant="secondary" className="bg-primary/10 text-primary">
+            <Badge key={tech} variant="secondary" className="bg-brandRed-600/10 text-brandRed-600">
               {tech}
             </Badge>
           ))}
         </div>
         
-        <Button className="w-full bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300">
+        <Button className="w-full bg-brandRed-600/10 border border-brandRed-600 text-brandRed-600 hover:bg-brandRed-600 hover:text-white transition-all duration-300">
           Voir les détails
           <ExternalLink className="ml-2 h-4 w-4" />
         </Button>

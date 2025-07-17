@@ -31,7 +31,7 @@ const Dashboard = () => {
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-primary to-red-600 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-br from-primary to-brandRed-600 rounded-xl flex items-center justify-center">
                   <Gamepad2 className="h-6 w-6 text-white" />
                 </div>
                 <div>
@@ -46,7 +46,7 @@ const Dashboard = () => {
             <div className="flex items-center space-x-4">
               {/* User Profile Section */}
               <div className="flex items-center space-x-3 px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl">
-                <div className="w-8 h-8 bg-gradient-to-br from-primary to-red-600 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-primary to-brandRed-600 rounded-lg flex items-center justify-center">
                   <span className="text-white text-sm font-semibold">
                     {user.name.charAt(0).toUpperCase()}
                   </span>
@@ -60,7 +60,7 @@ const Dashboard = () => {
               {/* Notifications */}
               <Button variant="ghost" size="sm" className="relative">
                 <Bell className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-brandRed-500 rounded-full"></span>
               </Button>
 
               {/* Settings */}

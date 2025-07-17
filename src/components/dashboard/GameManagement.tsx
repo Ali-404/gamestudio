@@ -126,7 +126,7 @@ export const GameManagement = () => {
         </div>
         <Button 
           onClick={() => setIsAdding(true)}
-          className="bg-gradient-to-r from-primary to-red-600 hover:from-primary/90 hover:to-red-600/90 text-white shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+          className="bg-gradient-to-r from-primary to-brandRed-600 hover:from-primary/90 hover:to-brandRed-600/90 text-white shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
         >
           <Plus className="mr-2 h-4 w-4" />
           Nouveau jeu
@@ -187,7 +187,7 @@ export const GameManagement = () => {
             <div className="flex gap-3">
               <Button 
                 onClick={handleAddGame} 
-                className="bg-gradient-to-r from-primary to-red-600 hover:from-primary/90 hover:to-red-600/90 text-white shadow-lg"
+                className="bg-gradient-to-r from-primary to-brandRed-600 hover:from-primary/90 hover:to-brandRed-600/90 text-white shadow-lg"
               >
                 <Plus className="mr-2 h-4 w-4" />
                 Ajouter le jeu
@@ -214,7 +214,7 @@ export const GameManagement = () => {
           >
             <CardContent className="p-0">
               {/* Game Header */}
-              <div className="relative h-32 bg-gradient-to-br from-primary/10 to-red-600/10 rounded-t-lg overflow-hidden">
+              <div className="relative h-32 bg-gradient-to-br from-primary/10 to-brandRed-600/10 rounded-t-lg overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
                 <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
                   <div className={`px-3 py-1 rounded-full text-xs font-medium border flex items-center gap-1 ${getStatusColor(game.status)}`}>
@@ -233,7 +233,7 @@ export const GameManagement = () => {
                       size="sm" 
                       variant="outline" 
                       onClick={() => handleDeleteGame(game.id)}
-                      className="bg-white/90 border-red-300 text-red-600 hover:bg-red-50 hover:text-red-700 shadow-sm"
+                      className="bg-white/90 border-brandRed-300 text-brandRed-600 hover:bg-brandRed-100 hover:text-brandRed-700 shadow-sm"
                     >
                       <Trash2 className="h-3 w-3" />
                     </Button>
