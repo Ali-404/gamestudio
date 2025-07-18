@@ -103,3 +103,18 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+
+
+@keyframes logo-anim {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 1.1;
+  }
+}
+
+.logo-anim {
+  animation: logo-anim 6s ease-in-out alternate infinite;
+}

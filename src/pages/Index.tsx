@@ -5,8 +5,13 @@ import NewsCard from '@/components/NewsCard';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Target, Users, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { cap } from '@/lib/utils';
 
 const Index = () => {
+
+  const {t} = useTranslation()
+
   const featuredGames = [
     {
       id: '1',
@@ -71,10 +76,10 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Pourquoi choisir <span className="text-primary">GameStudio</span> ?
+              {t("whyChoose")} <span className="text-primary">Fuyoz Games</span> ?
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Notre passion pour l'innovation et notre expertise technique nous permettent de créer des expériences gaming exceptionnelles
+              {t("landingOurMission")}
             </p>
           </div>
 
@@ -83,9 +88,9 @@ const Index = () => {
               <div className="bg-primary/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/30 transition-colors">
                 <Target className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-4">Innovation</h3>
+              <h3 className="text-xl font-semibold text-white mb-4">{cap(t("Innovation"))}</h3>
               <p className="text-gray-400">
-                Nous repoussons constamment les limites de la technologie gaming pour offrir des expériences uniques et mémorables.
+               {t("landingInnovation")}
               </p>
             </div>
 
@@ -93,9 +98,9 @@ const Index = () => {
               <div className="bg-primary/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/30 transition-colors">
                 <Users className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-4">Équipe Expert</h3>
+              <h3 className="text-xl font-semibold text-white mb-4">{`${cap(t("expert"))} ${t("team")}`}</h3>
               <p className="text-gray-400">
-                Notre équipe talentueuse réunit des professionnels passionnés avec des années d'expérience dans l'industrie.
+              {t("landingTeamExpert")}
               </p>
             </div>
 
@@ -103,9 +108,9 @@ const Index = () => {
               <div className="bg-primary/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/30 transition-colors">
                 <Zap className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-4">Performance</h3>
+              <h3 className="text-xl font-semibold text-white mb-4">{cap(t("performance"))}</h3>
               <p className="text-gray-400">
-                Nous optimisons chaque aspect de nos jeux pour garantir des performances fluides sur toutes les plateformes.
+                {t("landingPerformance")}
               </p>
             </div>
           </div>
@@ -118,15 +123,15 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center mb-12">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Jeux <span className="text-primary">Populaires</span>
+                {cap(t("popular"))} <span className="text-primary">{cap(t("games"))}</span>
               </h2>
               <p className="text-xl text-gray-400">
-                Découvrez nos créations les plus appréciées
+                {t("landingPopularGames")}
               </p>
             </div>
             <Link to="/games">
               <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                Voir tous les jeux
+                {`${cap(t("seeAll"))} ${t("games")} `}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
@@ -146,15 +151,15 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center mb-12">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Dernières <span className="text-primary">Actualités</span>
+                {cap(t("latest"))} <span className="text-primary">{cap(t("news"))}</span>
               </h2>
               <p className="text-xl text-gray-400">
-                Restez informé de nos dernières nouvelles
+                {t('landingLatestNews')}
               </p>
             </div>
             <Link to="/news">
               <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                Voir toutes les actualités
+                {cap(t("seeAll"))} {t("news")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
@@ -172,10 +177,10 @@ const Index = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary/10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Prêt à créer quelque chose d'<span className="text-primary">extraordinaire</span> ?
+            {t("landingReadyToCreate")}<span className="text-primary"> {cap(t("extraordinary"))}</span> ?
           </h2>
           <p className="text-xl text-gray-400 mb-8">
-            Contactez-nous pour discuter de votre projet de jeu vidéo et découvrir comment nous pouvons le réaliser ensemble
+            {t("landingContactUs")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
@@ -184,15 +189,7 @@ const Index = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Link to="/team">
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-white text-white hover:bg-white hover:text-dark px-8 py-4 text-lg font-semibold"
-              >
-                Rencontrer l'équipe
-              </Button>
-            </Link>
+           
           </div>
         </div>
       </section>

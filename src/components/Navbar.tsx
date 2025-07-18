@@ -3,17 +3,20 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Gamepad2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
+import { cap } from '@/lib/utils';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const {t} = useTranslation()
 
   const navigation = [
-    { name: 'Accueil', href: '/' },
-    { name: 'Jeux', href: '/games' },
-    { name: 'Actualités', href: '/news' },
-    { name: 'Équipe', href: '/team' },
-    { name: 'Contact', href: '/contact' },
+    { name: cap(t("home")), href: '/' },
+    { name: cap(t("games")), href: '/games' },
+    { name: cap(t("news")), href: '/news' },
+    { name: cap(t("team")), href: '/team' },
+    { name: cap(t("contact")), href: '/contact' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -24,8 +27,8 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <Gamepad2 className="h-8 w-8 text-primary" />
-              <span className="font-bold text-xl text-white">GameStudio</span>
+              <img src='/public/images/6.png' width={40} />
+              <span className="font-bold text-xl text-white">Fuyoz Games</span>
             </Link>
           </div>
 
