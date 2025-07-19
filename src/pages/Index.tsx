@@ -74,13 +74,15 @@ const Index = () => {
       {/* About Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <div className="text-center mb-16 min-h-[400px] bg-[url(/public/images/dream1.png)] flex items-center justify-center bg-cover bg-center rounded-xl">
+           <div className='p-8 rounded-xl overflow-hidden drop-shadow-xl shadow-2xl backdrop-blur-2xl hover:scale-[1.01] transition-transform'>
+             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 ">
               {t("whyChoose")} <span className="text-primary">Fuyoz Games</span> ?
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-xl text-white max-w-3xl mx-auto">
               {t("landingOurMission")}
             </p>
+           </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -183,9 +185,9 @@ const Index = () => {
             {t("landingContactUs")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
+            <Link to="/contact" >
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-4 text-lg font-semibold">
-                Démarrer un projet
+                {cap(t("contact"))}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
