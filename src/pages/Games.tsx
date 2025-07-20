@@ -4,11 +4,12 @@ import { Search, Filter } from 'lucide-react';
 import GameCard from '@/components/GameCard';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { useTranslation } from 'react-i18next';
+import { cap } from '@/lib/utils';
 
 const Games = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('Tous');
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   const games = [
     {
@@ -73,12 +74,14 @@ const Games = () => {
     },
   ];
 
-  const categories = ['Tous', 'RPG', 'Course', 'Stratégie', 'Puzzle', 'VR'];
+  const {t} = useTranslation()
+  
+  const categories = ["all", 'RPG', 'Course', 'Stratégie', 'Puzzle', 'VR'];
 
   const filteredGames = games.filter(game => {
     const matchesSearch = game.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          game.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'Tous' || 
+    const matchesCategory = selectedCategory === "all" || 
                            game.technologies.some(tech => tech.toLowerCase().includes(selectedCategory.toLowerCase()));
     return matchesSearch && matchesCategory;
   });
@@ -89,10 +92,10 @@ const Games = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Nos <span className="text-primary">Jeux</span>
+            {cap(t("our"))} <span className="text-primary">{cap(t("games"))}</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Découvrez notre portfolio de jeux innovants, chacun conçu avec passion et expertise
+            {t("gamesCaption")}
           </p>
         </div>
 
@@ -135,7 +138,7 @@ const Games = () => {
         {/* Results */}
         <div className="mb-6">
           <p className="text-gray-400">
-            {filteredGames.length} jeu{filteredGames.length > 1 ? 's' : ''} trouvé{filteredGames.length > 1 ? 's' : ''}
+            {filteredGames.length} {t("game")}{filteredGames.length > 1 ? 's' : ''} {t("found")}{filteredGames.length > 1 ? 's' : ''}
           </p>
         </div>
 
