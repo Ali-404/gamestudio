@@ -22,56 +22,7 @@ const Games = () => {
       players: 'Solo / Multi',
       status: 'En développement' as const,
     },
-    {
-      id: '2',
-      title: 'Mystic Realms',
-      description: 'Aventure fantastique en monde ouvert avec des quêtes épiques et un système de magie unique.',
-      image: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400',
-      technologies: ['Unreal Engine', 'Blueprint', 'Maya'],
-      releaseDate: '2023',
-      players: 'Solo',
-      status: 'Publié' as const,
-    },
-    {
-      id: '3',
-      title: 'Racing Thunder',
-      description: 'Jeu de course arcade avec des voitures personnalisables et des circuits spectaculaires.',
-      image: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400',
-      technologies: ['Unity', 'C#', 'Photon'],
-      releaseDate: '2024',
-      players: 'Multi',
-      status: 'Bêta' as const,
-    },
-    {
-      id: '4',
-      title: 'Space Odyssey',
-      description: 'Exploration spatiale en réalité virtuelle avec des combats épiques et des planètes à découvrir.',
-      image: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?w=400',
-      technologies: ['Unity VR', 'C#', 'OpenXR'],
-      releaseDate: '2023',
-      players: 'Solo',
-      status: 'Publié' as const,
-    },
-    {
-      id: '5',
-      title: 'Medieval Conquest',
-      description: 'Stratégie en temps réel dans un univers médiéval avec gestion de royaume et batailles massives.',
-      image: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400',
-      technologies: ['Unreal Engine', 'C++', 'MySQL'],
-      releaseDate: '2024',
-      players: 'Multi',
-      status: 'En développement' as const,
-    },
-    {
-      id: '6',
-      title: 'Puzzle Master',
-      description: 'Jeu de réflexion innovant avec des mécaniques de puzzle en 3D et des défis créatifs.',
-      image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400',
-      technologies: ['Unity', 'C#', 'ProBuilder'],
-      releaseDate: '2023',
-      players: 'Solo',
-      status: 'Publié' as const,
-    },
+   
   ];
 
   const {t} = useTranslation()
@@ -106,7 +57,7 @@ const Games = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input
                 type="text"
-                placeholder="Rechercher un jeu..."
+                placeholder={t("searchAGame")}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 bg-dark/50 border-gray-700 text-white placeholder-gray-400 focus:border-primary"

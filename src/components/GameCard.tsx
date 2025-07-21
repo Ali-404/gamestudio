@@ -3,6 +3,8 @@ import { Calendar, Users, ExternalLink } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
+import { cap } from '@/lib/utils';
 
 interface GameCardProps {
   game: {
@@ -18,6 +20,7 @@ interface GameCardProps {
 }
 
 const GameCard = ({ game }: GameCardProps) => {
+  const {t} = useTranslation()
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Publié':
@@ -74,7 +77,7 @@ const GameCard = ({ game }: GameCardProps) => {
         </div>
         
         <Button className="w-full bg-brandRed-600/10 border border-brandRed-600 text-brandRed-600 hover:bg-brandRed-600 hover:text-white transition-all duration-300">
-          Voir les détails
+          {cap(t('seeMore'))}
           <ExternalLink className="ml-2 h-4 w-4" />
         </Button>
       </CardContent>

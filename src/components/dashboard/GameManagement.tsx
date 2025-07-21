@@ -1,5 +1,5 @@
-
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -19,11 +19,12 @@ interface Game {
 }
 
 export const GameManagement = () => {
+  const { t } = useTranslation();
   const [games, setGames] = useState<Game[]>([
     {
       id: '1',
       title: 'Mystic Adventures',
-      description: 'Un RPG fantastique immersif avec des mécaniques de combat innovantes et un monde ouvert à explorer.',
+      description: t('game1Desc'),
       technologies: 'Unity, C#, Blender',
       image: '/placeholder.svg',
       releaseDate: '2024-01-15',
@@ -33,7 +34,7 @@ export const GameManagement = () => {
     {
       id: '2',
       title: 'Space Explorer',
-      description: 'Exploration spatiale en 3D avec des systèmes de crafting avancés et des batailles épiques.',
+      description: t('game2Desc'),
       technologies: 'Unreal Engine, Blueprint, Maya',
       image: '/placeholder.svg',
       releaseDate: '2024-03-20',
@@ -43,7 +44,7 @@ export const GameManagement = () => {
     {
       id: '3',
       title: 'Cyber Legends',
-      description: 'Un jeu d\'action cyberpunk avec des éléments de stratégie en temps réel.',
+      description: t('game3Desc'),
       technologies: 'Unity, C#, Photoshop',
       image: '/placeholder.svg',
       releaseDate: '2024-06-10',
@@ -66,9 +67,9 @@ export const GameManagement = () => {
   const handleAddGame = () => {
     if (!newGame.title || !newGame.description) {
       toast({
-        title: "Erreur",
-        description: "Veuillez remplir tous les champs requis",
-        variant: "destructive",
+        title: t('error'),
+        description: t('fillAllFields'),
+        variant: 'destructive',
       });
       return;
     }
@@ -83,16 +84,16 @@ export const GameManagement = () => {
     setIsAdding(false);
     
     toast({
-      title: "Jeu ajouté",
-      description: "Le jeu a été ajouté avec succès",
+      title: t('gameAdded'),
+      description: t('gameAddedDesc'),
     });
   };
 
   const handleDeleteGame = (id: string) => {
     setGames(games.filter(game => game.id !== id));
     toast({
-      title: "Jeu supprimé",
-      description: "Le jeu a été supprimé avec succès",
+      title: t('gameDeleted'),
+      description: t('gameDeletedDesc'),
     });
   };
 
@@ -116,125 +117,94 @@ export const GameManagement = () => {
 
   return (
     <div className="space-y-8">
-      {/* Header Section */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Gestion des Jeux</h2>
-          <p className="text-slate-600 dark:text-slate-400 mt-1">
-            Gérez votre portfolio de jeux et projets en cours
-          </p>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">{t('gameManagementTitle')}</h2>
+          <p className="text-slate-600 dark:text-slate-400 mt-1">{t('gameManagementDesc')}</p>
         </div>
-        <Button 
-          onClick={() => setIsAdding(true)}
-          className="bg-gradient-to-r from-primary to-brandRed-600 hover:from-primary/90 hover:to-brandRed-600/90 text-white shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
-        >
+        <Button onClick={() => setIsAdding(true)} className="bg-gradient-to-r from-primary to-brandRed-600 hover:from-primary/90 hover:to-brandRed-600/90 text-white shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105">
           <Plus className="mr-2 h-4 w-4" />
-          Nouveau jeu
+          {t('newGame')}
         </Button>
       </div>
 
-      {/* Add Game Form */}
       {isAdding && (
         <Card className="border-0 shadow-xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm animate-fade-in">
           <CardHeader className="bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 rounded-t-lg">
             <CardTitle className="text-slate-900 dark:text-white flex items-center">
               <Plus className="mr-2 h-5 w-5 text-primary" />
-              Nouveau Jeu
+              {t('newGame')}
             </CardTitle>
-            <CardDescription>Ajoutez un nouveau jeu à votre portfolio</CardDescription>
+            <CardDescription>{t('newGameDesc')}</CardDescription>
           </CardHeader>
           <CardContent className="p-6 space-y-6">
             <div className="grid gap-6 md:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="title" className="text-slate-700 dark:text-slate-300 font-medium">
-                  Titre du jeu
+                  {t('gameTitle')}
                 </Label>
                 <Input
                   id="title"
                   value={newGame.title}
                   onChange={(e) => setNewGame({ ...newGame, title: e.target.value })}
-                  className="h-11 bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600 focus:border-primary"
-                  placeholder="Ex: Mystic Adventures"
+                  className="h-11"
+                  placeholder={t('gameTitlePlaceholder')}
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="technologies" className="text-slate-700 dark:text-slate-300 font-medium">
-                  Technologies utilisées
+                  {t('technologiesUsed')}
                 </Label>
                 <Input
                   id="technologies"
                   value={newGame.technologies}
                   onChange={(e) => setNewGame({ ...newGame, technologies: e.target.value })}
-                  className="h-11 bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600 focus:border-primary"
-                  placeholder="Ex: Unity, C#, Blender"
+                  className="h-11"
+                  placeholder={t('technologiesPlaceholder')}
                 />
               </div>
             </div>
-            
             <div className="space-y-2">
               <Label htmlFor="description" className="text-slate-700 dark:text-slate-300 font-medium">
-                Description
+                {t('description')}
               </Label>
               <textarea
                 id="description"
                 value={newGame.description}
                 onChange={(e) => setNewGame({ ...newGame, description: e.target.value })}
-                className="w-full min-h-[100px] px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white resize-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
-                placeholder="Décrivez votre jeu en détail..."
+                className="w-full min-h-[100px]"
+                placeholder={t('descriptionPlaceholder')}
               />
             </div>
-            
             <div className="flex gap-3">
-              <Button 
-                onClick={handleAddGame} 
-                className="bg-gradient-to-r from-primary to-brandRed-600 hover:from-primary/90 hover:to-brandRed-600/90 text-white shadow-lg"
-              >
+              <Button onClick={handleAddGame} className="bg-gradient-to-r from-primary to-brandRed-600 text-white shadow-lg">
                 <Plus className="mr-2 h-4 w-4" />
-                Ajouter le jeu
+                {t('addGame')}
               </Button>
-              <Button 
-                onClick={() => setIsAdding(false)} 
-                variant="outline"
-                className="border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700"
-              >
-                Annuler
+              <Button onClick={() => setIsAdding(false)} variant="outline">
+                {t('cancel')}
               </Button>
             </div>
           </CardContent>
         </Card>
       )}
 
-      {/* Games Grid */}
       <div className="grid gap-6 lg:grid-cols-2">
         {games.map((game, index) => (
-          <Card 
-            key={game.id} 
-            className="group border-0 shadow-lg hover:shadow-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] animate-fade-in"
-            style={{ animationDelay: `${index * 100}ms` }}
-          >
+          <Card key={game.id} className="group border-0 shadow-lg hover:shadow-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
             <CardContent className="p-0">
-              {/* Game Header */}
               <div className="relative h-32 bg-gradient-to-br from-primary/10 to-brandRed-600/10 rounded-t-lg overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
                 <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
                   <div className={`px-3 py-1 rounded-full text-xs font-medium border flex items-center gap-1 ${getStatusColor(game.status)}`}>
                     {getStatusIcon(game.status)}
-                    {game.status === 'released' ? 'Publié' : game.status === 'beta' ? 'Bêta' : 'En développement'}
+                    {t(game.status)}
                   </div>
                   <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="bg-white/90 border-slate-300 text-slate-700 hover:bg-white hover:text-primary shadow-sm"
-                    >
+                    <Button size="sm" variant="outline">
                       <Edit className="h-3 w-3" />
                     </Button>
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      onClick={() => handleDeleteGame(game.id)}
-                      className="bg-white/90 border-brandRed-300 text-brandRed-600 hover:bg-brandRed-100 hover:text-brandRed-700 shadow-sm"
-                    >
+                    <Button size="sm" variant="outline" onClick={() => handleDeleteGame(game.id)}>
                       <Trash2 className="h-3 w-3" />
                     </Button>
                   </div>
@@ -244,7 +214,6 @@ export const GameManagement = () => {
                 </div>
               </div>
 
-              {/* Game Content */}
               <div className="p-6 space-y-4">
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors duration-200">
@@ -262,14 +231,14 @@ export const GameManagement = () => {
                   </div>
                   <div className="flex items-center gap-1">
                     <Calendar className="h-3 w-3" />
-                    <span>{new Date(game.releaseDate).toLocaleDateString('fr-FR')}</span>
+                    <span>{new Date(game.releaseDate).toLocaleDateString()}</span>
                   </div>
                 </div>
 
                 {game.downloads && (
                   <div className="pt-3 border-t border-slate-200 dark:border-slate-700">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-slate-600 dark:text-slate-400">Téléchargements</span>
+                      <span className="text-sm text-slate-600 dark:text-slate-400">{t('downloads')}</span>
                       <span className="text-lg font-bold text-primary">
                         {game.downloads.toLocaleString()}
                       </span>
@@ -287,11 +256,11 @@ export const GameManagement = () => {
           <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
             <Code className="h-8 w-8 text-slate-400" />
           </div>
-          <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">Aucun jeu pour le moment</h3>
-          <p className="text-slate-600 dark:text-slate-400 mb-4">Commencez par ajouter votre premier jeu</p>
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">{t('noGamesYet')}</h3>
+          <p className="text-slate-600 dark:text-slate-400 mb-4">{t('startByAdding')}</p>
           <Button onClick={() => setIsAdding(true)} className="bg-primary hover:bg-primary/90">
             <Plus className="mr-2 h-4 w-4" />
-            Ajouter un jeu
+            {t('addGame')}
           </Button>
         </div>
       )}

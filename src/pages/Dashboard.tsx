@@ -10,11 +10,12 @@ import { NewsManagement } from '@/components/dashboard/NewsManagement';
 import { TeamManagement } from '@/components/dashboard/TeamManagement';
 import { DashboardStats } from '@/components/dashboard/DashboardStats';
 import { LogOut, Users, Gamepad2, Newspaper, BarChart3, Settings, Bell } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
+  const { t } = useTranslation();
 
-  // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
   if (!user) {
     return <Navigate to="/login" replace />;
   }
@@ -25,7 +26,6 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      {/* Modern Header with glassmorphism effect */}
       <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/80 dark:bg-slate-900/80 border-b border-slate-200/50 dark:border-slate-700/50">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
@@ -38,13 +38,12 @@ const Dashboard = () => {
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
                     GameStudio Pro
                   </h1>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">Administration Dashboard</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">{t("dashboard.subtitle")}</p>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center space-x-4">
-              {/* User Profile Section */}
               <div className="flex items-center space-x-3 px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl">
                 <div className="w-8 h-8 bg-gradient-to-br from-primary to-brandRed-600 rounded-lg flex items-center justify-center">
                   <span className="text-white text-sm font-semibold">
@@ -57,77 +56,54 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              {/* Notifications */}
               <Button variant="ghost" size="sm" className="relative">
                 <Bell className="h-5 w-5" />
                 <span className="absolute -top-1 -right-1 w-3 h-3 bg-brandRed-500 rounded-full"></span>
               </Button>
 
-              {/* Settings */}
               <Button variant="ghost" size="sm">
                 <Settings className="h-5 w-5" />
               </Button>
 
-              {/* Logout */}
-              <Button 
-                onClick={handleLogout}
-                variant="outline"
-                size="sm"
-                className="border-slate-300 text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800"
-              >
+              <Button onClick={handleLogout} variant="outline" size="sm" className="border-slate-300 text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800">
                 <LogOut className="mr-2 h-4 w-4" />
-                Déconnexion
+                {t("dashboard.logout")}
               </Button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-8">
         {user.role === 'admin' ? (
           <>
-            {/* Welcome Section */}
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                Bienvenue, {user.name}
+                {t("dashboard.welcome")}, {user.name}
               </h2>
               <p className="text-slate-600 dark:text-slate-400 text-lg">
-                Gérez votre studio de jeux vidéo depuis ce tableau de bord professionnel
+                {t("dashboard.description")}
               </p>
             </div>
 
             <Tabs defaultValue="stats" className="space-y-8">
-              {/* Modern Tab Navigation */}
               <div className="border-b border-slate-200 dark:border-slate-700">
                 <TabsList className="bg-transparent h-auto p-0 space-x-8">
-                  <TabsTrigger 
-                    value="stats" 
-                    className="bg-transparent border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none px-0 pb-3 pt-0 font-semibold text-slate-600 data-[state=active]:text-primary dark:text-slate-400 dark:data-[state=active]:text-primary"
-                  >
+                  <TabsTrigger value="stats" className="...">
                     <BarChart3 className="mr-2 h-5 w-5" />
-                    Statistiques
+                    {t("dashboard.tabs.stats")}
                   </TabsTrigger>
-                  <TabsTrigger 
-                    value="games"
-                    className="bg-transparent border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none px-0 pb-3 pt-0 font-semibold text-slate-600 data-[state=active]:text-primary dark:text-slate-400 dark:data-[state=active]:text-primary"
-                  >
+                  <TabsTrigger value="games" className="...">
                     <Gamepad2 className="mr-2 h-5 w-5" />
-                    Jeux
+                    {t("dashboard.tabs.games")}
                   </TabsTrigger>
-                  <TabsTrigger 
-                    value="news"
-                    className="bg-transparent border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none px-0 pb-3 pt-0 font-semibold text-slate-600 data-[state=active]:text-primary dark:text-slate-400 dark:data-[state=active]:text-primary"
-                  >
+                  <TabsTrigger value="news" className="...">
                     <Newspaper className="mr-2 h-5 w-5" />
-                    Actualités
+                    {t("dashboard.tabs.news")}
                   </TabsTrigger>
-                  <TabsTrigger 
-                    value="team"
-                    className="bg-transparent border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none px-0 pb-3 pt-0 font-semibold text-slate-600 data-[state=active]:text-primary dark:text-slate-400 dark:data-[state=active]:text-primary"
-                  >
+                  <TabsTrigger value="team" className="...">
                     <Users className="mr-2 h-5 w-5" />
-                    Équipe
+                    {t("dashboard.tabs.team")}
                   </TabsTrigger>
                 </TabsList>
               </div>
@@ -150,14 +126,13 @@ const Dashboard = () => {
             </Tabs>
           </>
         ) : (
-          // Vue membre de l'équipe (lecture seule) - aussi améliorée
           <div className="space-y-8">
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                Espace Membre
+                {t("dashboard.memberSpace")}
               </h2>
               <p className="text-slate-600 dark:text-slate-400 text-lg">
-                Bienvenue dans votre espace membre, {user.name}
+                {t("dashboard.memberWelcome")}, {user.name}
               </p>
             </div>
 
@@ -165,10 +140,10 @@ const Dashboard = () => {
               <CardHeader className="pb-6">
                 <CardTitle className="text-2xl text-slate-900 dark:text-white flex items-center">
                   <Users className="mr-3 h-6 w-6 text-primary" />
-                  Informations de l'Équipe
+                  {t("dashboard.teamInfoTitle")}
                 </CardTitle>
                 <CardDescription className="text-slate-600 dark:text-slate-400 text-base">
-                  Consultez les informations de votre équipe en lecture seule
+                  {t("dashboard.teamInfoDesc")}
                 </CardDescription>
               </CardHeader>
               <CardContent>

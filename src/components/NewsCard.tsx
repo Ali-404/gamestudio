@@ -2,6 +2,8 @@
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
+import { cap } from '@/lib/utils';
 
 interface NewsCardProps {
   article: {
@@ -16,6 +18,7 @@ interface NewsCardProps {
 }
 
 const NewsCard = ({ article }: NewsCardProps) => {
+  const {t} = useTranslation()
   return (
     <Card className="group bg-dark/50 border-gray-700 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-primary/20">
       <div className="relative overflow-hidden rounded-t-lg">
@@ -56,7 +59,7 @@ const NewsCard = ({ article }: NewsCardProps) => {
           variant="ghost" 
           className="w-full text-primary hover:bg-primary/10 transition-all duration-300"
         >
-          Lire l'article
+          {cap(t("seeMore"))}
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </CardContent>

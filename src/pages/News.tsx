@@ -4,9 +4,12 @@ import { Search, Calendar } from 'lucide-react';
 import NewsCard from '@/components/NewsCard';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
+import { cap } from '@/lib/utils';
 
 const News = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const {t} = useTranslation()
 
   const articles = [
     {
@@ -27,42 +30,7 @@ const News = () => {
       publishedAt: '12 Jan 2024',
       category: 'Récompenses',
     },
-    {
-      id: '3',
-      title: 'Mise à jour majeure pour Mystic Realms',
-      excerpt: 'La version 2.0 apporte de nouveaux sorts, quêtes et un système de compagnons révolutionnaire.',
-      image: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400',
-      author: 'Sophie Laurent',
-      publishedAt: '08 Jan 2024',
-      category: 'Mises à jour',
-    },
-    {
-      id: '4',
-      title: 'Interview : L\'avenir du gaming en VR',
-      excerpt: 'Notre directeur technique partage sa vision sur les technologies immersives et l\'avenir du jeu vidéo.',
-      image: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?w=400',
-      author: 'Alex Bernard',
-      publishedAt: '05 Jan 2024',
-      category: 'Interviews',
-    },
-    {
-      id: '5',
-      title: 'Recrutement : Rejoignez notre équipe',
-      excerpt: 'Nous recherchons des développeurs passionnés pour renforcer notre équipe créative et talentueuse.',
-      image: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400',
-      author: 'Julie Moreau',
-      publishedAt: '03 Jan 2024',
-      category: 'Carrières',
-    },
-    {
-      id: '6',
-      title: 'Beta ouverte pour Racing Thunder',
-      excerpt: 'Testez notre nouveau jeu de course en avant-première et donnez-nous vos retours pour améliorer l\'expérience.',
-      image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400',
-      author: 'Thomas Petit',
-      publishedAt: '01 Jan 2024',
-      category: 'Bêta',
-    },
+    
   ];
 
   const filteredArticles = articles.filter(article => 
@@ -77,10 +45,10 @@ const News = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            <span className="text-primary">Actualités</span> & Blog
+            <span className="text-primary">{cap(t("news"))}</span> {t("and")} {cap(t("blog"))}
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Restez informé des dernières nouvelles, mises à jour et coulisses de notre studio
+            {t("newsDesc")}
           </p>
         </div>
 
@@ -90,7 +58,7 @@ const News = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <Input
               type="text"
-              placeholder="Rechercher un article..."
+              placeholder={t("searchArticle")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 bg-dark/50 border-gray-700 text-white placeholder-gray-400 focus:border-primary"

@@ -15,6 +15,7 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
       <Sonner />
       <AuthProvider>
         <BrowserRouter>
+         <ScrollToTop />
           <Routes>
             {/* Routes publiques avec Navbar et Footer */}
             <Route path="/" element={

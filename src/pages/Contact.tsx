@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,6 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { cap } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -15,17 +16,16 @@ const Contact = () => {
     subject: '',
     message: '',
   });
+  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Simulation d'envoi de formulaire
+
     toast({
-      title: "Message envoyé !",
-      description: "Nous vous répondrons dans les plus brefs délais.",
+      title: t("messageSentTitle"),
+      description: t("messageSentDesc"),
     });
 
-    // Reset form
     setFormData({
       name: '',
       email: '',
@@ -47,10 +47,10 @@ const Contact = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Contactez <span className="text-primary">Nous</span>
+            {cap(t("contact"))} <span className="text-primary">{cap(t("us"))}</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Une idée de jeu ? Un projet à discuter ? Nous sommes là pour vous écouter
+            {t("contactDesc")}
           </p>
         </div>
 
@@ -60,10 +60,10 @@ const Contact = () => {
             <CardHeader>
               <CardTitle className="text-white flex items-center space-x-2">
                 <MessageSquare className="h-5 w-5 text-primary" />
-                <span>Envoyez-nous un message</span>
+                <span>{t("sendUsMessage")}</span>
               </CardTitle>
               <CardDescription className="text-gray-400">
-                Remplissez le formulaire ci-dessous et nous vous répondrons rapidement
+                {t("formSubtitle")}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -71,7 +71,7 @@ const Contact = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">
-                      Nom complet
+                      {t("fullName")}
                     </label>
                     <Input
                       id="name"
@@ -81,7 +81,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       className="bg-dark/50 border-gray-600 text-white placeholder-gray-400 focus:border-primary"
-                      placeholder="Votre nom"
+                      placeholder={t("yourName")}
                     />
                   </div>
                   <div>
@@ -96,14 +96,14 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       className="bg-dark/50 border-gray-600 text-white placeholder-gray-400 focus:border-primary"
-                      placeholder="votre@email.com"
+                      placeholder={t("yourEmail")}
                     />
                   </div>
                 </div>
-                
+
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-400 mb-2">
-                    Sujet
+                    {t("subject")}
                   </label>
                   <Input
                     id="subject"
@@ -113,13 +113,13 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     className="bg-dark/50 border-gray-600 text-white placeholder-gray-400 focus:border-primary"
-                    placeholder="Sujet de votre message"
+                    placeholder={t("subjectPlaceholder")}
                   />
                 </div>
-                
+
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">
-                    Message
+                    {t("subject")}
                   </label>
                   <Textarea
                     id="message"
@@ -129,16 +129,16 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     className="bg-dark/50 border-gray-600 text-white placeholder-gray-400 focus:border-primary"
-                    placeholder="Décrivez votre projet ou votre demande..."
+                    placeholder={t("messagePlaceholder")}
                   />
                 </div>
-                
-                <Button 
-                  type="submit" 
+
+                <Button
+                  type="submit"
                   className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 transition-all duration-300 transform hover:scale-105"
                 >
                   <Send className="mr-2 h-4 w-4" />
-                  Envoyer le message
+                  {t("sendMessage")}
                 </Button>
               </form>
             </CardContent>
@@ -149,9 +149,9 @@ const Contact = () => {
             {/* Contact Details */}
             <Card className="bg-dark/50 border-gray-700">
               <CardHeader>
-                <CardTitle className="text-white">Informations de contact</CardTitle>
+                <CardTitle className="text-white">{t("contactInfo")}</CardTitle>
                 <CardDescription className="text-gray-400">
-                  Plusieurs moyens de nous contacter
+                  {t("contactWays")}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -164,73 +164,73 @@ const Contact = () => {
                     <p className="text-gray-400">contact@gamestudio.com</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-4">
                   <div className="bg-primary/20 p-3 rounded-lg">
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-white font-semibold">Téléphone</h3>
+                    <h3 className="text-white font-semibold">{t("phone")}</h3>
                     <p className="text-gray-400">+33 1 23 45 67 89</p>
                   </div>
                 </div>
-                
-                <div className="flex items-center space-x-4">
+
+                {/* <div className="flex items-center space-x-4">
                   <div className="bg-primary/20 p-3 rounded-lg">
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-white font-semibold">Adresse</h3>
+                    <h3 className="text-white font-semibold">{t("address")}</h3>
                     <p className="text-gray-400">
                       123 Rue du Gaming<br />
                       75001 Paris, France
                     </p>
                   </div>
-                </div>
+                </div> */}
               </CardContent>
             </Card>
 
             {/* Business Hours */}
-            <Card className="bg-dark/50 border-gray-700">
+            {/* <Card className="bg-dark/50 border-gray-700">
               <CardHeader>
-                <CardTitle className="text-white">Horaires d'ouverture</CardTitle>
+                <CardTitle className="text-white">{t("openingHours")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 <div className="flex justify-between text-gray-400">
-                  <span>Lundi - Vendredi</span>
+                  <span>{t("mondayFriday")}</span>
                   <span>9h00 - 18h00</span>
                 </div>
                 <div className="flex justify-between text-gray-400">
-                  <span>Samedi</span>
+                  <span>{t("saturday")}</span>
                   <span>10h00 - 16h00</span>
                 </div>
                 <div className="flex justify-between text-gray-400">
-                  <span>Dimanche</span>
-                  <span>Fermé</span>
+                  <span>{t("sunday")}</span>
+                  <span>{t("closed")}</span>
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
 
             {/* FAQ Section */}
-            <Card className="bg-dark/50 border-gray-700">
+            {/* <Card className="bg-dark/50 border-gray-700">
               <CardHeader>
-                <CardTitle className="text-white">Questions fréquentes</CardTitle>
+                <CardTitle className="text-white">{t("faq")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <h4 className="text-primary font-semibold mb-2">Développez-vous des jeux sur mesure ?</h4>
+                  <h4 className="text-primary font-semibold mb-2">{t("customGamesQuestion")}</h4>
                   <p className="text-gray-400 text-sm">
-                    Oui, nous proposons des services de développement personnalisé selon vos besoins.
+                    {t("customGamesAnswer")}
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-primary font-semibold mb-2">Quels sont vos délais de réponse ?</h4>
+                  <h4 className="text-primary font-semibold mb-2">{t("responseTimeQuestion")}</h4>
                   <p className="text-gray-400 text-sm">
-                    Nous répondons généralement sous 24-48h pour toute demande professionnelle.
+                    {t("responseTimeAnswer")}
                   </p>
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
           </div>
         </div>
       </div>
