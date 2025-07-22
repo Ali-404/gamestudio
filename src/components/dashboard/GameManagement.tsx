@@ -24,32 +24,32 @@ export const GameManagement = () => {
     {
       id: '1',
       title: 'Mystic Adventures',
-      description: t('game1Desc'),
+      description: t('gameManagement.game1Desc'),
       technologies: 'Unity, C#, Blender',
       image: '/placeholder.svg',
       releaseDate: '2024-01-15',
       status: 'released',
-      downloads: 12500
+      downloads: 12500,
     },
     {
       id: '2',
       title: 'Space Explorer',
-      description: t('game2Desc'),
+      description: t('gameManagement.game2Desc'),
       technologies: 'Unreal Engine, Blueprint, Maya',
       image: '/placeholder.svg',
       releaseDate: '2024-03-20',
       status: 'beta',
-      downloads: 3200
+      downloads: 3200,
     },
     {
       id: '3',
       title: 'Cyber Legends',
-      description: t('game3Desc'),
+      description: t('gameManagement.game3Desc'),
       technologies: 'Unity, C#, Photoshop',
       image: '/placeholder.svg',
       releaseDate: '2024-06-10',
-      status: 'development'
-    }
+      status: 'development',
+    },
   ]);
 
   const [isAdding, setIsAdding] = useState(false);
@@ -59,7 +59,7 @@ export const GameManagement = () => {
     technologies: '',
     image: '',
     releaseDate: '',
-    status: 'development'
+    status: 'development',
   });
 
   const { toast } = useToast();
@@ -67,8 +67,8 @@ export const GameManagement = () => {
   const handleAddGame = () => {
     if (!newGame.title || !newGame.description) {
       toast({
-        title: t('error'),
-        description: t('fillAllFields'),
+        title: t('gameManagement.error'),
+        description: t('gameManagement.fillAllFields'),
         variant: 'destructive',
       });
       return;
@@ -76,28 +76,28 @@ export const GameManagement = () => {
 
     const game: Game = {
       ...newGame,
-      id: Date.now().toString()
+      id: Date.now().toString(),
     };
 
-    setGames([...games, game]);
+    setGames(prev => [...prev, game]);
     setNewGame({ title: '', description: '', technologies: '', image: '', releaseDate: '', status: 'development' });
     setIsAdding(false);
-    
+
     toast({
-      title: t('gameAdded'),
-      description: t('gameAddedDesc'),
+      title: t('gameManagement.gameAdded'),
+      description: t('gameManagement.gameAddedDesc'),
     });
   };
 
   const handleDeleteGame = (id: string) => {
-    setGames(games.filter(game => game.id !== id));
+    setGames(prev => prev.filter(game => game.id !== id));
     toast({
-      title: t('gameDeleted'),
-      description: t('gameDeletedDesc'),
+      title: t('gameManagement.gameDeleted'),
+      description: t('gameManagement.gameDeletedDesc'),
     });
   };
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status: Game['status']) => {
     switch (status) {
       case 'released': return 'bg-green-100 text-green-800 border-green-200';
       case 'beta': return 'bg-blue-100 text-blue-800 border-blue-200';
@@ -106,7 +106,7 @@ export const GameManagement = () => {
     }
   };
 
-  const getStatusIcon = (status: string) => {
+  const getStatusIcon = (status: Game['status']) => {
     switch (status) {
       case 'released': return <Play className="h-3 w-3" />;
       case 'beta': return <Download className="h-3 w-3" />;
@@ -117,88 +117,106 @@ export const GameManagement = () => {
 
   return (
     <div className="space-y-8">
+      {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">{t('gameManagementTitle')}</h2>
-          <p className="text-slate-600 dark:text-slate-400 mt-1">{t('gameManagementDesc')}</p>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">{t('gameManagement.title')}</h2>
+          <p className="text-slate-600 dark:text-slate-400 mt-1">{t('gameManagement.description')}</p>
         </div>
         <Button onClick={() => setIsAdding(true)} className="bg-gradient-to-r from-primary to-brandRed-600 hover:from-primary/90 hover:to-brandRed-600/90 text-white shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105">
           <Plus className="mr-2 h-4 w-4" />
-          {t('newGame')}
+          {t('gameManagement.newGame')}
         </Button>
       </div>
 
+      {/* Add New Game Form */}
       {isAdding && (
         <Card className="border-0 shadow-xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm animate-fade-in">
           <CardHeader className="bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 rounded-t-lg">
             <CardTitle className="text-slate-900 dark:text-white flex items-center">
               <Plus className="mr-2 h-5 w-5 text-primary" />
-              {t('newGame')}
+              {t('gameManagement.newGame')}
             </CardTitle>
-            <CardDescription>{t('newGameDesc')}</CardDescription>
+            <CardDescription>{t('gameManagement.newGameDesc')}</CardDescription>
           </CardHeader>
           <CardContent className="p-6 space-y-6">
             <div className="grid gap-6 md:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="title" className="text-slate-700 dark:text-slate-300 font-medium">
-                  {t('gameTitle')}
+                  {t('gameManagement.gameTitle')}
                 </Label>
                 <Input
                   id="title"
                   value={newGame.title}
-                  onChange={(e) => setNewGame({ ...newGame, title: e.target.value })}
+                  onChange={e => setNewGame({ ...newGame, title: e.target.value })}
                   className="h-11"
-                  placeholder={t('gameTitlePlaceholder')}
+                  placeholder={t('gameManagement.gameTitlePlaceholder')}
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="technologies" className="text-slate-700 dark:text-slate-300 font-medium">
-                  {t('technologiesUsed')}
+                  {t('gameManagement.technologiesUsed')}
                 </Label>
                 <Input
                   id="technologies"
                   value={newGame.technologies}
-                  onChange={(e) => setNewGame({ ...newGame, technologies: e.target.value })}
+                  onChange={e => setNewGame({ ...newGame, technologies: e.target.value })}
                   className="h-11"
-                  placeholder={t('technologiesPlaceholder')}
+                  placeholder={t('gameManagement.technologiesPlaceholder')}
                 />
               </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="description" className="text-slate-700 dark:text-slate-300 font-medium">
-                {t('description')}
+                {t('gameManagement.description')}
               </Label>
               <textarea
                 id="description"
                 value={newGame.description}
-                onChange={(e) => setNewGame({ ...newGame, description: e.target.value })}
+                onChange={e => setNewGame({ ...newGame, description: e.target.value })}
                 className="w-full min-h-[100px]"
-                placeholder={t('descriptionPlaceholder')}
+                placeholder={t('gameManagement.descriptionPlaceholder')}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="releaseDate" className="text-slate-700 dark:text-slate-300 font-medium">
+                {t('gameManagement.releaseDate')}
+              </Label>
+              <Input
+                id="releaseDate"
+                type="date"
+                value={newGame.releaseDate}
+                onChange={e => setNewGame({ ...newGame, releaseDate: e.target.value })}
+                className="h-11"
               />
             </div>
             <div className="flex gap-3">
               <Button onClick={handleAddGame} className="bg-gradient-to-r from-primary to-brandRed-600 text-white shadow-lg">
                 <Plus className="mr-2 h-4 w-4" />
-                {t('addGame')}
+                {t('gameManagement.addGame')}
               </Button>
               <Button onClick={() => setIsAdding(false)} variant="outline">
-                {t('cancel')}
+                {t('gameManagement.cancel')}
               </Button>
             </div>
           </CardContent>
         </Card>
       )}
 
+      {/* Game Cards */}
       <div className="grid gap-6 lg:grid-cols-2">
         {games.map((game, index) => (
-          <Card key={game.id} className="group border-0 shadow-lg hover:shadow-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+          <Card
+            key={game.id}
+            className="group border-0 shadow-lg hover:shadow-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] animate-fade-in"
+            style={{ animationDelay: `${index * 100}ms` }}
+          >
             <CardContent className="p-0">
               <div className="relative h-32 bg-gradient-to-br from-primary/10 to-brandRed-600/10 rounded-t-lg overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
                 <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
-                  <div className={`px-3 py-1 rounded-full text-xs font-medium border flex items-center gap-1 ${getStatusColor(game.status)}`}>
-                    {getStatusIcon(game.status)}
-                    {t(game.status)}
+                  <div className={`px-3 py-1 rounded-full text-xs font-medium border flex items-center gap-1 ${getStatusColor(game.status)}`}>  
+                    {getStatusIcon(game.status)} {t(`gameManagement.${game.status}`)}
                   </div>
                   <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                     <Button size="sm" variant="outline">
@@ -213,7 +231,6 @@ export const GameManagement = () => {
                   <ImageIcon className="h-8 w-8 text-slate-400" />
                 </div>
               </div>
-
               <div className="p-6 space-y-4">
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors duration-200">
@@ -223,7 +240,6 @@ export const GameManagement = () => {
                     {game.description}
                   </p>
                 </div>
-
                 <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
                   <div className="flex items-center gap-1">
                     <Code className="h-3 w-3" />
@@ -234,14 +250,11 @@ export const GameManagement = () => {
                     <span>{new Date(game.releaseDate).toLocaleDateString()}</span>
                   </div>
                 </div>
-
                 {game.downloads && (
                   <div className="pt-3 border-t border-slate-200 dark:border-slate-700">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-slate-600 dark:text-slate-400">{t('downloads')}</span>
-                      <span className="text-lg font-bold text-primary">
-                        {game.downloads.toLocaleString()}
-                      </span>
+                      <span className="text-sm text-slate-600 dark:text-slate-400">{t('gameManagement.downloads')}</span>
+                      <span className="text-lg font-bold text-primary">{game.downloads.toLocaleString()}</span>
                     </div>
                   </div>
                 )}
@@ -251,16 +264,17 @@ export const GameManagement = () => {
         ))}
       </div>
 
+      {/* Empty State */}
       {games.length === 0 && (
         <div className="text-center py-12">
           <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
             <Code className="h-8 w-8 text-slate-400" />
           </div>
-          <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">{t('noGamesYet')}</h3>
-          <p className="text-slate-600 dark:text-slate-400 mb-4">{t('startByAdding')}</p>
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">{t('gameManagement.noGamesYet')}</h3>
+          <p className="text-slate-600 dark:text-slate-400 mb-4">{t('gameManagement.startByAdding')}</p>
           <Button onClick={() => setIsAdding(true)} className="bg-primary hover:bg-primary/90">
             <Plus className="mr-2 h-4 w-4" />
-            {t('addGame')}
+            {t('gameManagement.addGame')}
           </Button>
         </div>
       )}

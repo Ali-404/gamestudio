@@ -108,33 +108,219 @@
     "teamInfoTitle": "Team Information",
     "teamInfoDesc": "View your team details in read-only mode"
   },
-    "gameManagementTitle": "Game Management",
-  "gameManagementDesc": "Manage all your games in one place.",
-  "newGame": "New Game",
-  "newGameDesc": "Fill in the details below to add a new game to your portfolio.",
-  "gameTitle": "Game Title",
-  "gameTitlePlaceholder": "Enter the game title",
-  "technologiesUsed": "Technologies Used",
-  "technologiesPlaceholder": "Unity, Unreal, etc.",
-  "description": "Description",
-  "descriptionPlaceholder": "Describe your game",
-  "addGame": "Add Game",
-  "cancel": "Cancel",
+   "gameManagement": {
+    "title": "Game Management",
+    "description": "Manage all your games in one place.",
+    "newGame": "New Game",
+    "newGameDesc": "Fill in the details below to add a new game to your portfolio.",
+    "gameTitle": "Game Title",
+    "gameTitlePlaceholder": "Enter the game title",
+    "technologiesUsed": "Technologies Used",
+    "technologiesPlaceholder": "Unity, Unreal, etc.",
+    "description": "Description",
+    "descriptionPlaceholder": "Describe your game",
+    "addGame": "Add Game",
+    "cancel": "Cancel",
+    "error": "Error",
+    "fillAllFields": "Please fill in all required fields.",
+    "gameAdded": "Game Added",
+    "gameAddedDesc": "Your new game has been added to the list.",
+    "gameDeleted": "Game Deleted",
+    "gameDeletedDesc": "The game has been removed from the list.",
+    "downloads": "Downloads",
+    "noGamesYet": "No games yet",
+    "startByAdding": "Start by adding your first game.",
+    "development": "In Development",
+    "beta": "Beta",
+    "released": "Released",
+    "edit": "Edit",
+    "delete": "Delete",
+    "releaseDate": "Release Date",
+    "image": "Game Image",
+    "game1Desc": "Embark on a magical journey through enchanted lands and solve ancient mysteries.",
+    "game2Desc": "Explore distant galaxies, collect resources, and survive the unknown.",
+    "game3Desc": "Join the resistance in a dystopian cyberpunk future filled with action and hacking."
+  },
+   "dashboardStats": {
+    "title": "Analytics Dashboard",
+    "subtitle": "Studio performance overview",
+    "stats": {
+      "developedGames": {
+        "title": "Games Developed",
+        "value": "12",
+        "trend": "+16.7%",
+        "description": "+2 this month"
+      },
+      "publishedArticles": {
+        "title": "Articles Published",
+        "value": "48",
+        "trend": "+12.3%",
+        "description": "+8 this week"
+      },
+      "teamMembers": {
+        "title": "Team Members",
+        "value": "15",
+        "trend": "+6.7%",
+        "description": "+1 this month"
+      },
+      "monthlyViews": {
+        "title": "Monthly Views",
+        "value": "124.5k",
+        "trend": "+12.1%",
+        "description": "+12% vs last month"
+      },
+      "downloads": {
+        "title": "Downloads",
+        "value": "8.2k",
+        "trend": "+28.4%",
+        "description": "This month"
+      },
+      "averageRating": {
+        "title": "Avg. Rating",
+        "value": "4.8",
+        "trend": "+0.2",
+        "description": "/5 stars"
+      },
+      "engagement": {
+        "title": "Engagement",
+        "value": "94%",
+        "trend": "+5.1%",
+        "description": "User activity"
+      },
+      "growth": {
+        "title": "Growth",
+        "value": "2.4×",
+        "trend": "+140%",
+        "description": "This year"
+      }
+    },
+    "performanceChart": {
+      "title": "Game Performance",
+      "description": "Download trends over the last 6 months",
+      "placeholder": "Chart placeholder (integrate with Recharts)"
+    },
+    "recentActivity": {
+      "title": "Recent Activity",
+      "description": "Latest studio events",
+      "items": {
+        "newGame": {
+          "action": "New game published",
+          "time": "2 hours ago",
+          "type": "game"
+        },
+        "newArticle": {
+          "action": "Blog post added",
+          "time": "5 hours ago",
+          "type": "news"
+        },
+        "newMember": {
+          "action": "Team member added",
+          "time": "1 day ago",
+          "type": "team"
+        }
+      }
+    }
+  },
+  "newsManagement": {
+  "title": "News & Blog Management",
+  "subtitle": "Create, update, and organize your studio’s news posts",
+  "newDesc": "Fill out the details to publish a new article.",
+  "actions": {
+    "new": "New Article"
+  },
   "error": "Error",
   "fillAllFields": "Please fill in all required fields.",
-  "gameAdded": "Game Added",
-  "gameAddedDesc": "Your new game has been added to the list.",
-  "gameDeleted": "Game Deleted",
-  "gameDeletedDesc": "The game has been removed from the list.",
-  "downloads": "Downloads",
-  "noGamesYet": "No games yet",
-  "startByAdding": "Start by adding your first game.",
-  "development": "In Development",
-  "beta": "Beta",
-  "released": "Released",
-  "game1Desc": "Embark on a magical journey through enchanted lands and solve ancient mysteries.",
-  "game2Desc": "Explore distant galaxies, collect resources, and survive the unknown.",
-  "game3Desc": "Join the resistance in a dystopian cyberpunk future filled with action and hacking."
+  "published": {
+    "title": "Article Published",
+    "description": "Your new article is now live."
+  },
+  "deleted": {
+    "title": "Article Deleted",
+    "description": "The article has been removed."
+  },
+  "fields": {
+    "title": "Title",
+    "titlePlaceholder": "Enter article title",
+    "category": "Category",
+    "content": "Content",
+    "contentPlaceholder": "Write the article content..."
+  },
+  "categories": {
+    "announcement": "Announcement",
+    "update": "Update",
+    "event": "Event",
+    "release": "Release"
+  },
+  "items": {
+    "sample1": {
+      "title": "Server Maintenance Update",
+      "content": "Our servers will undergo maintenance on January 20."
+    },
+    "sample2": {
+      "title": "New Studio Website Launched",
+      "content": "Explore our new website with updated game galleries."
+    },
+    "sample3": {
+      "title": "Community Meetup Event",
+      "content": "Join us for a casual meetup at the GameCon expo."
+    }
+  },
+  "list": {
+    "noArticlesYet": "No articles yet",
+    "startByPublishing": "Start by publishing your first article."
+  },
+    "author": "Admin",
+  "marketingTeam": "Marketing Team",
+
+  "metrics": {
+    "views": "views",
+    "likes": "likes",
+    "comments": "comments"
+  }
   
+},
+"teamManagement": {
+    "title": "Team Management",
+    "subtitleRead": "View your team’s information",
+    "subtitleEdit": "Manage your development team members",
+    "newDesc": "Fill in the details to add a new member.",
+    "actions": {
+      "new": "New Member",
+      "add": "Add Member",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    },
+    "fields": {
+      "name": "Full Name",
+      "role": "Role / Position",
+      "bio": "Bio",
+      "bioPlaceholder": "Describe the member’s experience and skills…",
+      "email": "Email",
+      "location": "Location",
+      "experience": "Experience",
+      "skills": "Skills"
+    },
+    "error": "Error",
+    "fillAllFields": "Please fill in all required fields.",
+    "memberAdded": {
+      "title": "Member Added",
+      "description": "Member has been added to the team."
+    },
+    "memberDeleted": {
+      "title": "Member Deleted",
+      "description": "Member has been removed from the team."
+    },
+    "empty": {
+      "title": "No team members yet",
+      "description": "Start by adding your first team member."
+    }
+  },
+  "teamMemberCard": {
+    "social": {
+      "github": "GitHub Profile",
+      "linkedin": "LinkedIn Profile",
+      "twitter": "Twitter Profile"
+    }
+  }
 
 }

@@ -32,11 +32,11 @@ const Dashboard = () => {
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-primary to-brandRed-600 rounded-xl flex items-center justify-center">
-                  <Gamepad2 className="h-6 w-6 text-white" />
+                  <img src='/images/4.png' />
                 </div>
                 <div>
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
-                    GameStudio Pro
+                    Fuyoz Games
                   </h1>
                   <p className="text-sm text-slate-600 dark:text-slate-400">{t("dashboard.subtitle")}</p>
                 </div>
